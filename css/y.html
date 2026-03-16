@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia | Royal Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --royal-purple: #6A4C93;
+            --magic-lavender: #D4AFEE;
+            --gold: #FFD700;
+            --tiara-silver: #E5E7EB;
+        }
+
+        body {
+            background: #fdfcfb;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .cursive { font-family: 'Great Vibes', cursive; }
+
+        /* Advanced Animated Background */
+        #magic-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, #f3e8ff 0%, #ffffff 100%);
+        }
+
+        /* Glassmorphism Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--magic-lavender);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-link::after {
+            content: '✨';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after { transform: translateX(-50%) scale(1); }
+
+        /* Royal Card Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(212, 175, 238, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover { transform: translateY(-10px) rotate(1deg); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--royal-purple); border-radius: 10px; }
+
+        .shimmer {
+            background: linear-gradient(90deg, #6A4C93, #D4AFEE, #6A4C93);
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+    </style>
+</head>
+<body>
+
+    <canvas id="magic-canvas"></canvas>
+
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center">
+        <div class="text-3xl cursive font-bold text-purple-800">Princess Sofia</div>
+        <ul class="hidden md:flex gap-8 font-semibold text-purple-900 uppercase text-xs tracking-widest">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#status" class="nav-link">Status</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="bg-purple-600 text-white px-5 py-2 rounded-full text-sm hover:shadow-lg transition">Royal Login</button>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20">
+        <div class="text-center section-content">
+            <div class="inline-block p-2 rounded-full bg-purple-100 mb-4 animate-bounce">💎</div>
+            <h1 class="text-6xl md:text-8xl cursive text-purple-900 mb-6">Welcome to Enchancia</h1>
+            <p class="text-gray-600 max-w-xl mx-auto text-lg">Where magic meets clean code. I build digital kingdoms with grace and precision.</p>
+            <div class="mt-8 space-x-4">
+                <a href="#projects" class="bg-purple-700 text-white px-8 py-3 rounded-xl shadow-xl hover:bg-purple-800 transition">Explore Spells</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="min-h-screen flex items-center justify-center p-10 bg-white/30">
+        <div class="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="glass-card p-4 relative">
+                <div class="w-full h-[400px] bg-purple-200 rounded-2xl flex items-center justify-center text-8xl">👑</div>
+                <div class="absolute -bottom-6 -right-6 bg-yellow-400 w-24 h-24 rounded-full flex items-center justify-center text-4xl shadow-xl">✨</div>
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-purple-900 mb-6">A Princess in Training... <br><span class="text-purple-400">And Coding.</span></h2>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    Like Sofia, I believe that being a "princess" (or a developer) is about what's inside. It's about kindness, loyalty, and writing DRY, scalable code. I specialize in turning complex problems into magical user experiences.
+                </p>
+                <div class="flex gap-4">
+                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-bold">React</span>
+                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-bold">GSAP</span>
+                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-bold">UI/UX</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="status" class="py-20 bg-purple-900 text-white overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="cursive text-5xl mb-12 text-yellow-400">Clover's Status Report</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="stat-item">
+                    <div class="text-4xl font-bold mb-2">50+</div>
+                    <div class="text-purple-300">Kingdoms Built</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold mb-2">12k</div>
+                    <div class="text-purple-300">Magic Lines Written</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold mb-2">100%</div>
+                    <div class="text-purple-300">Belief in Magic</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold mb-2">Infinite</div>
+                    <div class="text-purple-300">Carrots Consumed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="min-h-screen py-20 px-6">
+        <h2 class="text-center text-5xl font-bold text-purple-900 mb-16 shimmer">The Royal Gallery</h2>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-6 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl mb-4 bg-purple-50 h-48 flex items-center justify-center text-6xl group-hover:scale-110 transition duration-500">🏰</div>
+                <h3 class="text-xl font-bold text-purple-800">Royal Dashboard</h3>
+                <p class="text-sm text-gray-500 mt-2">Managing castle inventory using Next.js and Firebase.</p>
+            </div>
+            <div class="glass-card p-6 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl mb-4 bg-pink-50 h-48 flex items-center justify-center text-6xl group-hover:scale-110 transition duration-500">🦋</div>
+                <h3 class="text-xl font-bold text-purple-800">Amulet API</h3>
+                <p class="text-sm text-gray-500 mt-2">A secure gateway for animal communication protocols.</p>
+            </div>
+            <div class="glass-card p-6 group cursor-pointer">
+                <div class="overflow-hidden rounded-xl mb-4 bg-yellow-50 h-48 flex items-center justify-center text-6xl group-hover:scale-110 transition duration-500">🍎</div>
+                <h3 class="text-xl font-bold text-purple-800">Sorcery Shop</h3>
+                <p class="text-sm text-gray-500 mt-2">E-commerce platform for Cedric’s potion supplies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto glass-card p-10 border-2 border-dashed border-purple-200">
+            <h2 class="text-4xl cursive text-center text-purple-900 mb-8">Send a Royal Invitation</h2>
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Your Title (e.g. Duke of Design)" class="w-full p-4 rounded-xl border border-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    <input type="email" placeholder="Your Royal Email" class="w-full p-4 rounded-xl border border-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                </div>
+                <textarea rows="4" placeholder="Your Message..." class="w-full p-4 rounded-xl border border-purple-100 focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+                <button class="w-full bg-purple-700 text-white font-bold py-4 rounded-xl hover:bg-purple-800 shadow-lg transition transform hover:scale-[1.02]">Cast Message Spell</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-400 text-sm">
+        &copy; 2026 Kingdom of Enchancia. All rights reserved.
+    </footer>
+
+    <script>
+        // 1. Particle Background Magic
+        const canvas = document.getElementById('magic-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `rgba(212, 175, 238, ${Math.random() * 0.5})`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.01;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (particles.length < 50) particles.push(new Particle());
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animateParticles();
+
+        // 2. GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entrance
+        gsap.from(".section-content", { duration: 1.5, opacity: 0, y: 50, ease: "power4.out" });
+
+        // Scroll Reveal for all sections
+        const sections = ['#about', '#status', '#projects', '#contact'];
+        sections.forEach(sec => {
+            gsap.from(sec, {
+                scrollTrigger: {
+                    trigger: sec,
+                    start: "top 80%",
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // Counter Animation for Status
+        gsap.from(".stat-item", {
+            scrollTrigger: {
+                trigger: "#status",
+                start: "top 70%",
+            },
+            scale: 0,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+
+    </script>
+</body>
+</html>
