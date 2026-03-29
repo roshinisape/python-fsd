@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forest Portfolio</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* INTRO SCREEN */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+z-index:9999;
+}
+
+.intro-text{
+font-size:50px;
+letter-spacing:5px;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #00ffff; }
+to{ text-shadow:0 0 30px #00ffff,0 0 60px #00ffff; }
+}
+
+/* PORTFOLIO HIDDEN FIRST */
+#portfolio{
+display:none;
+}
+
+/* BODY */
+body{
+font-family:Arial;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.45)),
+url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+/* NAVBAR */
+.navbar{
+background:rgba(20,60,30,0.35);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.navbar-brand{
+font-weight:bold;
+color:#7CFC00 !important;
+}
+
+/* NAV LINKS */
+.nav-link{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:14px;
+color:white !important;
+transition:0.3s;
+}
+
+.nav-link img{
+width:28px;
+margin-bottom:3px;
+}
+
+.nav-link:hover{
+color:#7CFC00 !important;
+transform:scale(1.1);
+}
+
+/* HOME */
+#home{
+padding:120px 0;
+}
+
+#home img{
+border-radius:50%;
+border:5px solid #7CFC00;
+}
+
+/* SECTIONS */
+section{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.15);
+margin-top:40px;
+border-radius:20px;
+padding:60px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ABOUT */
+.about-img{
+width:260px;
+border-radius:20px;
+border:3px solid #7CFC00;
+padding:8px;
+background:rgba(255,255,255,0.1);
+}
+
+/* SKILLS */
+.skill{
+height:120px;
+width:120px;
+border-radius:50%;
+background:rgba(255,255,255,0.1);
+border:2px solid #7CFC00;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+margin:10px;
+transition:0.3s;
+}
+
+.skill:hover{
+background:#2e7d32;
+transform:scale(1.1);
+}
+
+/* PROJECTS */
+.card{
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+color:white;
+border:1px solid rgba(255,255,255,0.2);
+border-radius:15px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* CONTACT */
+.btn-custom{
+background:#2e7d32;
+color:white;
+border:none;
+}
+
+.btn-custom:hover{
+background:#1b5e20;
+}
+
+input, textarea{
+background:rgba(255,255,255,0.15) !important;
+border:none !important;
+color:white !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+<div class="intro-text">WELCOME</div>
+<p>Loading Portfolio...</p>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<div class="container">
+<a class="navbar-brand" href="#">🌲 My Forest Portfolio</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="#home">🏠 Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#about">👤 About</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#skills">⚡ Skills</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#projects">💼 Projects</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#contact">📩 Contact</a>
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-md-6 text-center">
+<img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png" width="250">
+</div>
+
+<div class="col-md-6">
+<h1>Hello, I'm <span style="color:#7CFC00;">Roshini</span></h1>
+<h4>Frontend Developer</h4>
+<p>
+Like a forest grows tree by tree, my journey grows project by project 🌱
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-md-5 text-center mb-4">
+<img src="profile.jpg" class="about-img img-fluid">
+</div>
+
+<div class="col-md-7">
+<h2>About Me</h2>
+<p>
+I'm a BTech 3rd year student passionate about building modern websites using HTML, CSS, JS & React.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container text-center">
+<h2>Skills</h2>
+
+<div class="d-flex flex-wrap justify-content-center mt-4">
+<div class="skill">HTML</div>
+<div class="skill">CSS</div>
+<div class="skill">JS</div>
+<div class="skill">Bootstrap</div>
+<div class="skill">React</div>
+</div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container text-center">
+<h2>My Projects</h2>
+
+<div class="row mt-4">
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<h4>🌐 Portfolio</h4>
+<p>Responsive personal portfolio website.</p>
+<button class="btn btn-custom">View</button>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<h4>🛒 E-commerce UI</h4>
+<p>Shopping UI with product layout.</p>
+<button class="btn btn-custom">View</button>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<h4>📱 To-Do App</h4>
+<p>Task manager using JavaScript.</p>
+<button class="btn btn-custom">View</button>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container text-center">
+<h2>Contact Me</h2>
+
+<form class="w-50 mx-auto mt-4">
+<input type="text" class="form-control mb-3" placeholder="Your Name">
+<input type="email" class="form-control mb-3" placeholder="Your Email">
+<textarea class="form-control mb-3" rows="4" placeholder="Message"></textarea>
+<button class="btn btn-custom">Send</button>
+</form>
+
+</div>
+</section>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("portfolio").style.display="block";
+},3000);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

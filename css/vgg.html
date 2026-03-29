@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    @keyframes glow { from { text-shadow: 0 0 10px #4ade80; } to { text-shadow: 0 0 40px #4ade80, 0 0 60px #22c55e; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    @keyframes introFade { to { opacity: 0; pointer-events: none; } }
+    .glow-text { animation: glow 2s infinite alternate; }
+    .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    .intro-out { animation: introFade 0.6s ease 2.5s forwards; }
+    .progress-fill { transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-8px) scale(1.02); }
+    .nav-link-custom { position: relative; }
+    .nav-link-custom::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; transition: width 0.3s ease; }
+    .nav-link-custom:hover::after { width: 100%; }
+    html, body { scroll-behavior: smooth; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto" style="font-family: 'DM Sans', sans-serif;"><!-- Intro Screen -->
+  <div id="intro" class="intro-out" style="position:fixed;width:100%;height:100%;background:#0a1a0a;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;">
+   <div style="font-family:'Playfair Display',serif;font-size:48px;color:#4ade80;letter-spacing:6px;" class="glow-text">
+    🌲 WELCOME
+   </div>
+   <p style="color:#6ee7b7;margin-top:12px;letter-spacing:3px;font-size:14px;">Entering the forest...</p>
+  </div><!-- Main Wrapper -->
+  <div id="app-wrapper" class="w-full" style="min-height:100%;background:linear-gradient(160deg,#0a1a0a 0%,#0d2818 30%,#132a13 60%,#1a3a1a 100%);"><!-- Floating particles background -->
+   <div style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0;">
+    <div style="position:absolute;width:4px;height:4px;background:#4ade8040;border-radius:50%;top:20%;left:15%;animation:fadeUp 4s ease infinite;"></div>
+    <div style="position:absolute;width:3px;height:3px;background:#22c55e30;border-radius:50%;top:50%;left:70%;animation:fadeUp 5s ease infinite 1s;"></div>
+    <div style="position:absolute;width:5px;height:5px;background:#4ade8020;border-radius:50%;top:75%;left:40%;animation:fadeUp 6s ease infinite 2s;"></div>
+    <div style="position:absolute;width:3px;height:3px;background:#6ee7b720;border-radius:50%;top:35%;left:85%;animation:fadeUp 4.5s ease infinite 0.5s;"></div>
+   </div><!-- Navbar with Animations -->
+   <nav style="position:fixed;top:0;width:100%;z-index:100;backdrop-filter:blur(20px);background:linear-gradient(180deg,rgba(10,26,10,0.8),rgba(10,26,10,0.3));border-bottom:2px solid rgba(74,222,128,0.2);box-shadow:0 8px 32px rgba(74,222,128,0.1);" id="navbar">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+     <span id="nav-brand" style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;background:linear-gradient(135deg,#4ade80,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 3s infinite alternate;">🌲 Forest Dev</span>
+     <div class="hidden md:flex gap-8 items-center">
+      <a href="#home" class="nav-link-custom text-sm tracking-widest font-medium transition" style="opacity:0.8;color:#a7f3d0;">HOME</a> <a href="#about" class="nav-link-custom text-sm tracking-widest font-medium transition" style="opacity:0.8;color:#a7f3d0;">ABOUT</a> <a href="#skills" class="nav-link-custom text-sm tracking-widest font-medium transition" style="opacity:0.8;color:#a7f3d0;">SKILLS</a> <a href="#projects" class="nav-link-custom text-sm tracking-widest font-medium transition" style="opacity:0.8;color:#a7f3d0;">PROJECTS</a> <a href="#contact" class="nav-link-custom text-sm tracking-widest font-medium transition" style="opacity:0.8;color:#a7f3d0;">CONTACT</a> <button id="theme-toggle" style="background:rgba(74,222,128,0.2);border:1px solid rgba(74,222,128,0.4);border-radius:8px;padding:6px 12px;color:#4ade80;cursor:pointer;font-size:18px;transition:all 0.3s ease;" title="Toggle theme">🌙</button>
+     </div>
+    </div>
+   </nav>
+   <style>
+     .nav-link-custom {
+       position: relative;
+       display: inline-block;
+     }
+     .nav-link-custom::before {
+       content: '';
+       position: absolute;
+       bottom: -2px;
+       left: 0;
+       width: 0;
+       height: 2px;
+       background: linear-gradient(90deg, #4ade80, #22d3ee);
+       transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+     }
+     .nav-link-custom:hover::before {
+       width: 100%;
+     }
+     .nav-link-custom:hover {
+       color: #4ade80 !important;
+     }
+   </style>
+   <div class="relative z-10 max-w-5xl mx-auto px-6" style="padding-top:100px;padding-bottom:80px;"><!-- HOME -->
+    <section id="home" class="text-center py-20 fade-up">
+     <div style="width:160px;height:160px;margin:0 auto 32px;border-radius:50%;padding:4px;background:linear-gradient(135deg,#4ade80,#059669);">
+      <div style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:64px;background:#0d2818;">
+       👩‍💻
+      </div>
+     </div>
+     <p class="text-sm tracking-widest uppercase mb-3 fade-up delay-1" style="opacity:0.5;">Welcome to my world</p>
+     <h1 class="fade-up delay-2" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);line-height:1.2;">Hello, I'm <span id="hero-name" style="background:linear-gradient(90deg,#4ade80,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Roshini Sape</span></h1>
+     <p id="hero-role" class="text-lg mt-4 fade-up delay-3" style="color:#6ee7b7;">Aspiring Software Engineer 💻</p>
+    </section><!-- ABOUT -->
+    <section id="about" class="mt-16 fade-up delay-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(74,222,128,0.1);border-radius:24px;padding:48px 40px;">
+     <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;text-align:center;">About Me</h2>
+     <div style="width:40px;height:3px;background:linear-gradient(90deg,#4ade80,#059669);margin:0 auto 32px;border-radius:4px;"></div>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:800px;margin:0 auto;">
+      <div style="text-align:center;">
+       <div style="width:200px;height:200px;margin:0 auto 20px;border-radius:50%;padding:6px;background:linear-gradient(135deg,#4ade80,#22d3ee,#059669);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:float 3s ease-in-out infinite;">
+        <div id="profile-photo-container" style="width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0d2818;overflow:hidden;">
+         <img id="profile-photo" src="c:\Users\DELL\Desktop\myphoto.jpeg" alt="Profile" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.display='none'; document.getElementById('profile-photo-container').innerHTML='👩‍💻';" style="width:100%;height:100%;object-fit:cover;">
+        <img src="C:\Users\DELL\Desktop\myphoto.jpg.jpeg" style="width:200px;">
+        </div>
+       </div>
+      </div>
+      <div>
+       <p id="about-description" class="text-lg" style="color:#a7f3d0;line-height:1.8;font-size:16px;margin-bottom:20px;">I am an aspiring software engineer with a strong interest in frontend development. I enjoy creating user-friendly and visually appealing web applications. I am continuously learning and exploring new technologies to enhance my problem-solving skills and build impactful projects..</p>
+       <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="background:rgba(74,222,128,0.1);padding:16px 20px;border-radius:12px;border-left:3px solid #4ade80;">
+         <p style="color:#4ade80;font-weight:600;font-size:18px;margin:0;">3</p>
+         <p style="color:#a7f3d0;font-size:13px;margin:4px 0 0 0;">Projects Done</p>
+        </div>
+        <div style="background:rgba(74,222,128,0.1);padding:16px 20px;border-radius:12px;border-left:3px solid #4ade80;">
+         <p style="color:#4ade80;font-weight:600;font-size:18px;margin:0;">∞</p>
+         <p style="color:#a7f3d0;font-size:13px;margin:4px 0 0 0;">Passion</p>
+        </div>
+       </div>
+       <div style="margin-top:24px;display:flex;gap:12px;"><a id="github-link" href="https://github.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:10px;color:#4ade80;text-decoration:none;font-size:20px;transition:all 0.3s ease;" onmouseover="this.style.background='rgba(74,222,128,0.25)'" onmouseout="this.style.background='rgba(74,222,128,0.15)'">🐱</a> <a id="linkedin-link" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:10px;color:#4ade80;text-decoration:none;font-size:20px;transition:all 0.3s ease;" onmouseover="this.style.background='rgba(74,222,128,0.25)'" onmouseout="this.style.background='rgba(74,222,128,0.15)'">💼</a>
+       </div>
+      </div>
+     </div>
+    </section>
+    <style>
+     @keyframes float {
+       0%, 100% { transform: translateY(0px); }
+       50% { transform: translateY(-15px); }
+     }
+    </style><!-- SKILLS -->
+    <section id="skills" class="mt-16 fade-up delay-3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(74,222,128,0.1);border-radius:24px;padding:48px 40px;">
+     <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;text-align:center;">My Skills</h2>
+     <div style="width:40px;height:3px;background:linear-gradient(90deg,#4ade80,#059669);margin:0 auto 32px;border-radius:4px;"></div>
+     <div class="max-w-lg mx-auto space-y-6">
+      <div>
+       <div class="flex justify-between mb-2 text-sm">
+        <span>HTML</span><span style="color:#4ade80;">90%</span>
+       </div>
+       <div style="height:10px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
+        <div class="progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:10px;" data-target="90"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between mb-2 text-sm">
+        <span>CSS</span><span style="color:#4ade80;">85%</span>
+       </div>
+       <div style="height:10px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
+        <div class="progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:10px;" data-target="85"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between mb-2 text-sm">
+        <span>JavaScript</span><span style="color:#4ade80;">80%</span>
+       </div>
+       <div style="height:10px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
+        <div class="progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:10px;" data-target="80"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between mb-2 text-sm">
+        <span>React</span><span style="color:#4ade80;">75%</span>
+       </div>
+       <div style="height:10px;background:rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;">
+        <div class="progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,#4ade80,#22d3ee);border-radius:10px;" data-target="75"></div>
+       </div>
+      </div>
+     </div>
+    </section><!-- PROJECTS -->
+    <section id="projects" class="mt-16 fade-up delay-4">
+     <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;text-align:center;">Projects</h2>
+     <div style="width:40px;height:3px;background:linear-gradient(90deg,#4ade80,#059669);margin:0 auto 32px;border-radius:4px;"></div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="card-hover project-card" style="background:rgba(255,255,255,0.05);border:1px solid rgba(74,222,128,0.12);border-radius:20px;padding:0;overflow:hidden;transition:all 0.4s ease;">
+       <div style="height:160px;background:linear-gradient(135deg,#0d3b2a,#1a5f40);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden;">
+        📱 
+        <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,222,128,0.3),transparent);animation:shimmerFloat 3s ease infinite;"></div>
+       </div>
+       <div style="padding:24px;">
+        <h4 id="proj1-title" style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;color:#4ade80;">Code Forest</h4>
+        <p id="proj1-desc" style="color:#a7f3d0;font-size:14px;line-height:1.6;">Interactive coding environment</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+         <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">HTML</span> <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">CSS</span>
+        </div>
+       </div>
+      </div>
+      <div class="card-hover project-card" style="background:rgba(255,255,255,0.05);border:1px solid rgba(74,222,128,0.12);border-radius:20px;padding:0;overflow:hidden;transition:all 0.4s ease;">
+       <div style="height:160px;background:linear-gradient(135deg,#2a0d3b,#5f1a40);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden;">
+        🔍 
+        <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,222,128,0.3),transparent);animation:shimmerFloat 3s ease infinite 0.5s;"></div>
+       </div>
+       <div style="padding:24px;">
+        <h4 id="proj2-title" style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;color:#4ade80;">Bug Busters</h4>
+        <p id="proj2-desc" style="color:#a7f3d0;font-size:14px;line-height:1.6;">Debug challenge game</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+         <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">JavaScript</span> <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">React</span>
+        </div>
+       </div>
+      </div>
+      <div class="card-hover project-card" style="background:rgba(255,255,255,0.05);border:1px solid rgba(74,222,128,0.12);border-radius:20px;padding:0;overflow:hidden;transition:all 0.4s ease;">
+       <div style="height:160px;background:linear-gradient(135deg,#3b2a0d,#5f4a1a);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden;">
+        🎯 
+        <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,222,128,0.3),transparent);animation:shimmerFloat 3s ease infinite 1s;"></div>
+       </div>
+       <div style="padding:24px;">
+        <h4 id="proj3-title" style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;color:#4ade80;">Pixel Garden</h4>
+        <p id="proj3-desc" style="color:#a7f3d0;font-size:14px;line-height:1.6;">Creative pixel art editor</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+         <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">Canvas</span> <span style="background:rgba(74,222,128,0.15);color:#4ade80;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500;">SVG</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <style>
+     @keyframes shimmerFloat {
+       0%, 100% { transform: scale(1) translateY(0); }
+       50% { transform: scale(1.1) translateY(-10px); }
+     }
+     .project-card {
+       position: relative;
+       overflow: hidden;
+     }
+     .project-card::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(135deg, rgba(74,222,128,0.1), transparent);
+       opacity: 0;
+       transition: opacity 0.4s ease;
+       pointer-events: none;
+       z-index: 1;
+     }
+     .project-card:hover::before {
+       opacity: 1;
+     }
+    </style><!-- CONTACT -->
+    <section id="contact" class="mt-16 mb-16 fade-up delay-5" style="background:rgba(255,255,255,0.04);border:1px solid rgba(74,222,128,0.1);border-radius:24px;padding:48px 40px;">
+     <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;text-align:center;">Get in Touch</h2>
+     <div style="width:40px;height:3px;background:linear-gradient(90deg,#4ade80,#059669);margin:0 auto 32px;border-radius:4px;"></div>
+     <form id="contact-form" class="max-w-md mx-auto space-y-4">
+      <div><label for="name-input" class="block text-sm mb-2" style="color:#a7f3d0;">Name</label> <input id="name-input" type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(74,222,128,0.15);border-radius:12px;color:white;outline:none;font-size:15px;">
+      </div>
+      <div><label for="email-input" class="block text-sm mb-2" style="color:#a7f3d0;">Email</label> <input id="email-input" type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(74,222,128,0.15);border-radius:12px;color:white;outline:none;font-size:15px;">
+      </div>
+      <div><label for="msg-input" class="block text-sm mb-2" style="color:#a7f3d0;">Message</label> <textarea id="msg-input" rows="3" placeholder="Say hello..." style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(74,222,128,0.15);border-radius:12px;color:white;outline:none;font-size:15px;resize:vertical;"></textarea>
+      </div><button type="submit" id="send-btn" style="width:100%;padding:14px;background:linear-gradient(90deg,#059669,#4ade80);border:none;border-radius:12px;color:#0a1a0a;font-weight:600;font-size:15px;cursor:pointer;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'"> Send Message ✉️ </button>
+      <p id="form-msg" class="text-center text-sm" style="color:#4ade80;display:none;"></p>
+     </form>
+    </section>
+   </div>
+  </div>
+  <script>
+    // Theme toggle
+    let isDarkTheme = true;
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    themeToggle.addEventListener('click', function() {
+      isDarkTheme = !isDarkTheme;
+      document.getElementById('app-wrapper').style.opacity = '0.8';
+      
+      if (isDarkTheme) {
+        // Dark theme
+        document.getElementById('app-wrapper').style.background = 'linear-gradient(160deg,#0a1a0a 0%,#0d2818 30%,#132a13 60%,#1a3a1a 100%)';
+        document.body.style.background = '#0a1a0a';
+        themeToggle.textContent = '🌙';
+        themeToggle.style.background = 'rgba(74,222,128,0.2)';
+      } else {
+        // Light theme
+        document.getElementById('app-wrapper').style.background = 'linear-gradient(160deg,#f0fdf4 0%,#e0f7e8 30%,#dcf5ed 60%,#e8f8f3 100%)';
+        document.body.style.background = '#f0fdf4';
+        document.body.style.color = '#1a1a1a';
+        themeToggle.textContent = '☀️';
+        themeToggle.style.background = 'rgba(16,185,129,0.2)';
+        
+        // Update text colors for light theme
+        document.querySelectorAll('[style*="color:#a7f3d0"], [style*="color:#6ee7b7"]').forEach(el => {
+          if (el.style.color === 'rgb(167, 243, 208)' || el.style.color === '#a7f3d0') el.style.color = '#166534';
+          if (el.style.color === 'rgb(110, 231, 183)' || el.style.color === '#6ee7b7') el.style.color = '#047857';
+        });
+        
+        document.querySelectorAll('p, span, label').forEach(el => {
+          if (el.style.color === 'rgba(167, 243, 208, 1)' || el.style.color.includes('a7f3d0')) el.style.color = '#166534';
+        });
+      }
+      
+      setTimeout(() => document.getElementById('app-wrapper').style.opacity = '1', 300);
+    });
+
+    // Animate skill bars after intro
+    setTimeout(() => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        bar.style.width = bar.dataset.target + '%';
+      });
+    }, 3000);
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.textContent = 'Thanks for reaching out! 🌿';
+      msg.style.display = 'block';
+      this.reset();
+      setTimeout(() => msg.style.display = 'none', 3000);
+    });
+
+    // Element SDK
+    const defaultConfig = {
+      owner_name: 'Roshini Sape',
+      role_title: 'Aspiring Software Engineer 💻',
+      profile_photo_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+      about_description: 'Passionate about solving problems through code. I love learning new technologies and building projects that make an impact.',
+      linkedin_url: 'https://linkedin.com/in/yourprofile',
+      github_url: 'https://github.com/yourprofile',
+      project1_title: 'Code Forest',
+      project1_desc: 'Interactive coding environment',
+      project2_title: 'Bug Busters',
+      project2_desc: 'Debug challenge game',
+      project3_title: 'Pixel Garden',
+      project3_desc: 'Creative pixel art editor',
+      background_color: '#0a1a0a',
+      surface_color: '#0d2818',
+      text_color: '#e2e8f0',
+      primary_action_color: '#4ade80',
+      secondary_action_color: '#059669',
+      font_family: 'Playfair Display',
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+      const font = c.font_family || defaultConfig.font_family;
+      const baseSize = c.font_size || defaultConfig.font_size;
+
+      document.getElementById('hero-name').textContent = c.owner_name;
+      document.getElementById('hero-role').textContent = c.role_title;
+      document.getElementById('about-description').textContent = c.about_description;
+      document.getElementById('profile-photo').src = c.profile_photo_url;
+      document.getElementById('github-link').href = c.github_url || 'https://github.com';
+      document.getElementById('linkedin-link').href = c.linkedin_url || 'https://linkedin.com';
+      document.getElementById('proj1-title').textContent = c.project1_title;
+      document.getElementById('proj1-desc').textContent = c.project1_desc;
+      document.getElementById('proj2-title').textContent = c.project2_title;
+      document.getElementById('proj2-desc').textContent = c.project2_desc;
+      document.getElementById('proj3-title').textContent = c.project3_title;
+      document.getElementById('proj3-desc').textContent = c.project3_desc;
+
+      // Colors
+      const wrapper = document.getElementById('app-wrapper');
+      wrapper.style.background = `linear-gradient(160deg, ${c.background_color} 0%, ${c.surface_color} 50%, ${c.background_color} 100%)`;
+      document.body.style.color = c.text_color;
+      document.getElementById('nav-brand').style.background = `linear-gradient(135deg, ${c.primary_action_color}, #22d3ee)`;
+
+      document.querySelectorAll('.nav-link-custom').forEach(el => {
+        el.style.color = c.text_color;
+      });
+
+      // Update nav link underline color
+      const styleTag = document.getElementById('dynamic-styles') || document.createElement('style');
+      styleTag.id = 'dynamic-styles';
+      styleTag.textContent = `.nav-link-custom::before { background: linear-gradient(90deg, ${c.primary_action_color}, #22d3ee) !important; }`;
+      if (!styleTag.parentNode) document.head.appendChild(styleTag);
+
+      // Progress bars
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        bar.style.background = `linear-gradient(90deg, ${c.primary_action_color}, #22d3ee)`;
+      });
+
+      // Send button
+      const btn = document.getElementById('send-btn');
+      btn.style.background = `linear-gradient(90deg, ${c.secondary_action_color}, ${c.primary_action_color})`;
+
+      // Fonts
+      const headingStack = `${font}, serif`;
+      const bodyStack = `DM Sans, sans-serif`;
+      document.querySelectorAll('h1, h2, h4').forEach(el => el.style.fontFamily = headingStack);
+      document.body.style.fontFamily = `${font}, ${bodyStack}`;
+
+      // Font size
+      document.querySelectorAll('h1').forEach(el => el.style.fontSize = `${baseSize * 2.5}px`);
+      document.querySelectorAll('h2').forEach(el => el.style.fontSize = `${baseSize * 2}px`);
+      document.querySelectorAll('h4').forEach(el => el.style.fontSize = `${baseSize * 1.25}px`);
+      document.querySelectorAll('p, a, label, input, textarea, button').forEach(el => {
+        if (!el.closest('h1, h2, h4')) el.style.fontSize = `${baseSize}px`;
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => applyConfig(config),
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+            { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+            { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+            { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+            { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['owner_name', config.owner_name || defaultConfig.owner_name],
+          ['role_title', config.role_title || defaultConfig.role_title],
+          ['profile_photo_url', config.profile_photo_url || defaultConfig.profile_photo_url],
+          ['linkedin_url', config.linkedin_url || defaultConfig.linkedin_url],
+          ['github_url', config.github_url || defaultConfig.github_url],
+          ['about_description', config.about_description || defaultConfig.about_description],
+          ['project1_title', config.project1_title || defaultConfig.project1_title],
+          ['project1_desc', config.project1_desc || defaultConfig.project1_desc],
+          ['project2_title', config.project2_title || defaultConfig.project2_title],
+          ['project2_desc', config.project2_desc || defaultConfig.project2_desc],
+          ['project3_title', config.project3_title || defaultConfig.project3_title],
+          ['project3_desc', config.project3_desc || defaultConfig.project3_desc]
+        ])
+      });
+    }
+
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e3f7a1ae51554a9',t:'MTc3NDc5MzYyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
